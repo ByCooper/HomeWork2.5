@@ -1,6 +1,4 @@
 package ru.byCooper.employeeProject;
-import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Employee {
@@ -11,7 +9,6 @@ public class Employee {
         this.firstName = fName;
         this.lastName = lName;
     }
-
 
     public String getLastName() {
         return lastName;
@@ -31,8 +28,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
+        return "{firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
