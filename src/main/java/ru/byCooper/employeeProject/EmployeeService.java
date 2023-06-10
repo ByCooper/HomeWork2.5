@@ -1,8 +1,10 @@
 package ru.byCooper.employeeProject;
 
+import java.util.List;
+
 public interface EmployeeService {
-    void addPerson(Employee person);
-    void deletePerson(Employee person);
+    Employee addPerson(Employee person);
+    Employee deletePerson(Employee person);
     Employee searchPerson(Employee person);
-    void showAllPersons();
+    List<Employee> showAllPersons();
 }

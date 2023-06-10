@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.byCooper.employeeProject.exception.EmployeeAlreadyAddedException;
-import ru.byCooper.employeeProject.exception.EmployeeNotFoundException;
-import ru.byCooper.employeeProject.exception.EmployeeStorageIsFullException;
+
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/employee")
@@ -18,44 +18,26 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String addEmployee(@RequestParam("name") String name, @RequestParam("lastName") String lastName)
+    public Employee addEmployee(@RequestParam("name") String name, @RequestParam("lastName") String lastName)
     {
-        Employee person = new Employee(name, lastName);
-        try {
-            employeeService.addPerson(person);
-        } catch (EmployeeStorageIsFullException | EmployeeAlreadyAddedException e) {
-            System.out.println(e.getMessage());
-        }
-        return employeeService.sayHello();
+           return employeeService.addPerson(name, lastName);
     }
     @GetMapping("/remove")
     public Employee removeEmployee(@RequestParam("name") String name,
                                    @RequestParam("lastName") String lastName)
     {
-        Employee person = new Employee(name, lastName);
-        try {
-            employeeService.deletePerson(person);
-        } catch (EmployeeNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-        return person;
+           return employeeService.deletePerson(name, lastName);
     }
 
     @GetMapping("/find")
     public Employee searchEmployee(@RequestParam("name") String name,
                                    @RequestParam("lastName") String lastName)
     {
-        Employee person = new Employee(name, lastName);
-        try {
-            employeeService.searchPerson(person);
-        } catch (EmployeeNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-        return person;
+            return employeeService.searchPerson(name, lastName);
     }
 
     @GetMapping("/all")
-    public void allEmployee() {
-        employeeService.showAllPersons();
+    public List<Employee> allEmployee() {
+        return employeeService.showAllPersons();
     }
 }

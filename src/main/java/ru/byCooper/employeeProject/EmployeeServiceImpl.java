@@ -7,12 +7,14 @@ import ru.byCooper.employeeProject.exception.EmployeeStorageIsFullException;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class EmployeeServiceImpl {
     final int maxEmployee = 10;
     List<Employee> employee = new ArrayList<>();
 
-    public Employee addPerson(Employee person) {
+    public Employee addPerson(String name, String lastName) {
+        Employee person = new Employee(name, lastName);
         if (employee.size() > maxEmployee) {
             throw new EmployeeStorageIsFullException("Превышение количества сотрудников");
         } else if (employee.contains(person)) {
@@ -23,15 +25,18 @@ public class EmployeeServiceImpl {
         }
     }
 
-        public void deletePerson(Employee person) throws EmployeeNotFoundException{
+    public Employee deletePerson(String name, String lastName) throws EmployeeNotFoundException {
+        Employee person = new Employee(name, lastName);
         if (!employee.contains(person)) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         } else {
             employee.remove(person);
+            return person;
         }
     }
 
-    public Employee searchPerson(Employee person) throws EmployeeNotFoundException{
+    public Employee searchPerson(String name, String lastName) throws EmployeeNotFoundException {
+        Employee person = new Employee(name, lastName);
         if (!employee.contains(person)) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         } else {
@@ -39,12 +44,7 @@ public class EmployeeServiceImpl {
         }
     }
 
-    public void showAllPersons() {
-        for (Employee person : employee) {
-            System.out.println(person);
-        }
-    }
-    public String sayHello() {
-        return "Добро пожаловать";
+    public List<Employee> showAllPersons() {
+        return employee;
     }
 }
