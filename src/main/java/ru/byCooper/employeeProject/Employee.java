@@ -3,11 +3,17 @@ import java.util.Objects;
 
 public class Employee {
     private String firstName;
+    private String middleName;
     private String lastName;
+    private int office;
+    private int salary;
 
-    public Employee(String fName, String lName) {
+    public Employee(String fName, String lName, String mName, int office, int salary) {
         this.firstName = fName;
         this.lastName = lName;
+        this.middleName = mName;
+        this.office = office;
+        this.salary = salary;
     }
 
     public String getLastName() {
@@ -26,11 +32,33 @@ public class Employee {
         return firstName;
     }
 
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public int getOffice() {
+        return office;
+    }
+
+    public void setOffice(int office) {
+        this.office = office;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
     @Override
     public String toString() {
-        return "{firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+        return "Сотрудник " + firstName + " " + middleName + " " + lastName + ", office=" + office + ", salary=" + salary;
     }
 
     @Override
