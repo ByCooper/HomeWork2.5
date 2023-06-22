@@ -1,7 +1,7 @@
 package ru.byCooper.employeeProject;
 import java.util.Objects;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
     private String firstName;
     private String middleName;
     private String lastName;
@@ -72,5 +72,10 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName);
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return 0;
     }
 }

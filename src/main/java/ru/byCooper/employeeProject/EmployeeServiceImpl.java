@@ -7,6 +7,7 @@ import ru.byCooper.employeeProject.exception.EmployeeStorageIsFullException;
 
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.stream.IntStream;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -269,5 +270,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         return persons;
+    }
+
+    public Map<String, Employee> forStream() {
+        return employee;
     }
 }
