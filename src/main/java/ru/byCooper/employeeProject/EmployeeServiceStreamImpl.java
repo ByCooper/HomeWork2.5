@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class EmployeeServiceStreamImpl implements EmployeeServiceStream{
+public class EmployeeServiceStreamImpl implements DepartmentService {
 
     private final EmployeeServiceImpl employee;
 
@@ -17,35 +17,29 @@ public class EmployeeServiceStreamImpl implements EmployeeServiceStream{
 
 
     @Override
-    public int maxSalary(int office) {
-        int max = employee.forStream().values().stream()
+    public Optional<Employee> maxSalary(int office) {
+        return employee.getAll().stream()
                 .filter(e -> e.getOffice() == office)
-                .mapToInt(Employee::getSalary)
-                .max().orElse(0);
-
-        return max;
+                .max(Comparator.comparingInt(Employee::getSalary));
     }
 
     @Override
-    public int minSalary(int office) {
-        int min = employee.forStream().values().stream()
+    public Optional<Employee> minSalary(int office) {
+        return employee.getAll().stream()
                 .filter(e -> e.getOffice() == office)
-                .mapToInt(Employee::getSalary)
-                .min().orElse(0);
-
-        return min;
+                .min(Comparator.comparingInt(Employee::getSalary));
     }
 
     @Override
     public List<Employee> officeUsers(int office) {
-        return employee.forStream().values().stream()
+        return employee.getAll().stream()
                 .filter(e -> e.getOffice() == office)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Collection<Employee> allUsers() {
-        return employee.forStream().values().stream()
+        return employee.getAll().stream()
                 .sorted(Comparator.comparing(Employee::getOffice))
                 .collect(Collectors.toList());
     }
