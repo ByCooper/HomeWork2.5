@@ -1,9 +1,11 @@
 package ru.byCooper.employeeProject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import ru.byCooper.employeeProject.exception.EmployeeAlreadyAddedException;
 import ru.byCooper.employeeProject.exception.EmployeeNotFoundException;
 import ru.byCooper.employeeProject.exception.EmployeeStorageIsFullException;
+import ru.byCooper.employeeProject.exception.EmployeeValidateException;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -16,13 +18,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee addPerson(String name, String lastName, String middleName, int office, int salary) {
         //Добавление сотрудника
+        validAddEmployee(name, lastName, middleName);
         Employee person = new Employee(name, lastName, middleName, office, salary);
+
         if (employee.size() >= maxEmployee) {
             throw new EmployeeStorageIsFullException("Нет свободных позиций");
         } else if (employee.containsKey(person.getLastName() + " " + person.getFirstName())) {
             throw new EmployeeAlreadyAddedException("Данный сотрудник уже существует");
         } else {
-            employee.put(person.getLastName() + " " + person.getFirstName(), person);
+            employee.put(StringUtils.capitalize(person.getLastName()) + " " + StringUtils.capitalize(person.getFirstName()), person);
             return employee.get(person.getLastName() + " " + person.getFirstName());
         }
     }
@@ -30,7 +34,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public String deletePerson(String name, String lastName) {
         //Удаление сотрудника
-        String person = lastName + " " + name;
+        validNameLastName(name, lastName);
+        String person = capitalizePerson(name, lastName);
         if (!employee.containsKey(person)) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         } else {
@@ -42,7 +47,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee searchPerson(String name, String lastName) {
         //Поиск сотрудника
-        String person = lastName + " " + name;
+        validNameLastName(name, lastName);
+        String person = capitalizePerson(name, lastName);
         if (!employee.containsKey(person)) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         } else {
@@ -269,5 +275,21 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         return persons;
+    }
+
+    private void validAddEmployee(String name, String lastName, String middleName) {
+        if (!(StringUtils.isAlpha(name) && StringUtils.isAlpha(middleName) && StringUtils.isAlpha(lastName))) {
+            throw new EmployeeValidateException();
+        }
+    }
+
+    private void validNameLastName(String name, String lastName) {
+        if (!(StringUtils.isAlpha(name) && StringUtils.isAlpha(lastName))) {
+            throw new EmployeeValidateException();
+        }
+    }
+
+    private String capitalizePerson(String name, String lastName) {
+        return StringUtils.capitalize(lastName) + " " + StringUtils.capitalize(name);
     }
 }

@@ -1,4 +1,6 @@
 package ru.byCooper.employeeProject;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public class Employee {
@@ -9,9 +11,9 @@ public class Employee {
     private int salary;
 
     public Employee(String fName, String lName, String mName, int office, int salary) {
-        this.firstName = fName;
-        this.lastName = lName;
-        this.middleName = mName;
+        this.firstName = StringUtils.capitalize(fName);
+        this.lastName = StringUtils.capitalize(lName);
+        this.middleName = StringUtils.capitalize(mName);
         this.office = office;
         this.salary = salary;
     }
