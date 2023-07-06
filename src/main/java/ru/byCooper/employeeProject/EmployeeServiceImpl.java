@@ -270,4 +270,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return persons;
     }
+
+    public Collection<Employee> getAll() {
+        return employee.values();
+    }
 }
