@@ -282,7 +282,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private void validAddEmployee(String name, String lastName, String middleName) {
         if (!(StringUtils.isAlpha(name) && StringUtils.isAlpha(middleName) && StringUtils.isAlpha(lastName))) {
-            throw new EmployeeValidateException();
+            throw new EmployeeValidateException("Содержатся цифры или недопустимые символы");
         }
     }
 
