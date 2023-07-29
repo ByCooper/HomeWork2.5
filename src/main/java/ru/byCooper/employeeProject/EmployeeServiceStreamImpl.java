@@ -17,17 +17,29 @@ public class EmployeeServiceStreamImpl implements DepartmentService {
 
 
     @Override
-    public Optional<Employee> maxSalary(int office) {
+    public int maxSalary(int office) {
         return employee.getAll().stream()
                 .filter(e -> e.getOffice() == office)
-                .max(Comparator.comparingInt(Employee::getSalary));
+                .mapToInt(Employee::getSalary)
+                .max()
+                .getAsInt();
     }
 
     @Override
-    public Optional<Employee> minSalary(int office) {
+    public int minSalary(int office) {
         return employee.getAll().stream()
                 .filter(e -> e.getOffice() == office)
-                .min(Comparator.comparingInt(Employee::getSalary));
+                .mapToInt(Employee::getSalary)
+                .min()
+                .getAsInt();
+    }
+
+    @Override
+    public String officeSalary(int office) {
+        return "Сумма расходов составляет " + employee.getAll().stream()
+                .filter(e -> e.getOffice() == office)
+                .mapToInt(Employee::getSalary)
+                .sum() + " рублей";
     }
 
     @Override
@@ -38,9 +50,8 @@ public class EmployeeServiceStreamImpl implements DepartmentService {
     }
 
     @Override
-    public Collection<Employee> allUsers() {
+    public Map<Integer, List<Employee>> allUsers() {
         return employee.getAll().stream()
-                .sorted(Comparator.comparing(Employee::getOffice))
-                .collect(Collectors.toList());
+                .collect(Collectors.groupingBy(Employee::getOffice, Collectors.toList()));
     }
 }

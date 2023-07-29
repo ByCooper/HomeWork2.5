@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,12 +20,12 @@ public class EmployeeControllerStream {
     }
 
     @GetMapping(path = "/max-salary")
-    public Optional<Employee> maxSalary(@RequestParam("office") int office) {
+    public int maxSalary(@RequestParam("office") int office) {
         return service.maxSalary(office);
     }
 
     @GetMapping(path = "/min-salary")
-    public Optional<Employee> minSalary(@RequestParam("office") int office) {
+    public int minSalary(@RequestParam("office") int office) {
         return service.minSalary(office);
     }
 
@@ -34,7 +35,7 @@ public class EmployeeControllerStream {
     }
 
     @GetMapping(path = "/all-in")
-    public Collection<Employee> allOfficeUsers() {
+    public Map<Integer, List<Employee>> allOfficeUsers() {
         return service.allUsers();
     }
 }

@@ -12,10 +12,10 @@ import java.util.List;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    @ExceptionHandler
-    public ResponseEntity<String> handleException(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler
+//    public ResponseEntity<String> handleException(Exception e) {
+//        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//    }
 
     private final EmployeeServiceImpl employeeService;
 
