@@ -2,12 +2,14 @@ package ru.byCooper.employeeProject;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface DepartmentService {
 
-    Optional<Employee> maxSalary(int office);
-    Optional<Employee> minSalary(int office);
+    int maxSalary(int office);
+    int minSalary(int office);
+    String officeSalary(int office);
     List<Employee> officeUsers(int office);
-    Collection<Employee> allUsers();
+    Map<Integer, List<Employee>> allUsers();
 }
