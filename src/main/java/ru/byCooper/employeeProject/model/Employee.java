@@ -1,4 +1,4 @@
-package ru.byCooper.employeeProject;
+package ru.byCooper.employeeProject.model;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;

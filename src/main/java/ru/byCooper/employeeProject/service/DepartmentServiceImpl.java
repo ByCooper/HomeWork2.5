@@ -1,17 +1,18 @@
-package ru.byCooper.employeeProject;
+package ru.byCooper.employeeProject.service;
 
 import org.springframework.stereotype.Service;
+import ru.byCooper.employeeProject.model.Employee;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 @Service
-public class EmployeeServiceStreamImpl implements DepartmentService {
+public class DepartmentServiceImpl implements DepartmentService {
 
     private final EmployeeServiceImpl employee;
 
-    public EmployeeServiceStreamImpl(EmployeeServiceImpl employee) {
+    public DepartmentServiceImpl(EmployeeServiceImpl employee) {
         this.employee = employee;
     }
 

@@ -1,20 +1,21 @@
-package ru.byCooper.employeeProject;
+package ru.byCooper.employeeProject.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.byCooper.employeeProject.service.DepartmentServiceImpl;
+import ru.byCooper.employeeProject.model.Employee;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/departments")
-public class DepartmentControllerStream {
-    private final EmployeeServiceStreamImpl service;
+public class DepartmentController {
+    private final DepartmentServiceImpl service;
 
-    public DepartmentControllerStream(EmployeeServiceStreamImpl service) {
+    public DepartmentController(DepartmentServiceImpl service) {
         this.service = service;
     }
 

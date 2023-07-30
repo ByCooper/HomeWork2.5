@@ -1,8 +1,8 @@
-package ru.byCooper.employeeProject;
+package ru.byCooper.employeeProject.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.byCooper.employeeProject.service.EmployeeServiceImpl;
+import ru.byCooper.employeeProject.model.Employee;
 
 import java.util.Collection;
 import java.util.List;

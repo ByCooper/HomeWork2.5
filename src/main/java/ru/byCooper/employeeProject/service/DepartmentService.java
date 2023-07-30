@@ -1,9 +1,9 @@
-package ru.byCooper.employeeProject;
+package ru.byCooper.employeeProject.service;
 
-import java.util.Collection;
+import ru.byCooper.employeeProject.model.Employee;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public interface DepartmentService {
 

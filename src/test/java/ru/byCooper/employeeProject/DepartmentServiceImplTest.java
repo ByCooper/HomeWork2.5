@@ -1,16 +1,15 @@
 package ru.byCooper.employeeProject;
 
-import org.assertj.core.util.Arrays;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.byCooper.employeeProject.exception.EmployeeNotFoundException;
+import ru.byCooper.employeeProject.model.Employee;
+import ru.byCooper.employeeProject.service.DepartmentServiceImpl;
+import ru.byCooper.employeeProject.service.EmployeeServiceImpl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class EmployeeServiceStreamImplTest {
+class DepartmentServiceImplTest {
     @InjectMocks
-    private EmployeeServiceStreamImpl cut;
+    private DepartmentServiceImpl cut;
     @Mock
     private EmployeeServiceImpl cutMock;
 

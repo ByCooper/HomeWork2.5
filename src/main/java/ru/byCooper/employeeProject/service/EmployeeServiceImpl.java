@@ -1,4 +1,4 @@
-package ru.byCooper.employeeProject;
+package ru.byCooper.employeeProject.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import ru.byCooper.employeeProject.exception.EmployeeAlreadyAddedException;
 import ru.byCooper.employeeProject.exception.EmployeeNotFoundException;
 import ru.byCooper.employeeProject.exception.EmployeeStorageIsFullException;
 import ru.byCooper.employeeProject.exception.EmployeeValidateException;
+import ru.byCooper.employeeProject.model.Employee;
 
 import java.text.DecimalFormat;
 import java.util.*;
