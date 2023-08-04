@@ -45,10 +45,7 @@ class DepartmentServiceImplTest {
         int office2= 2;
         Employee user3 = new Employee(name3, lname3, mname3, office2, salary3);
 
-        List<Employee> test = new ArrayList<>();
-        test.add(user1);
-        test.add(user2);
-        test.add(user3);
+        List<Employee> test = new ArrayList<>(List.of(user1, user2, user3));
         return test;
     }
 
