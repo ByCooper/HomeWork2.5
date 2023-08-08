@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         validAddEmployee(name, lastName, middleName);
         Employee person = new Employee(name, lastName, middleName, office, salary);
         if (employee.size() >= maxEmployee) {
-            throw new EmployeeStorageIsFullException("Нет свобдных позиций");
+            throw new EmployeeStorageIsFullException("Нет свободных позиций");
         } else if (employee.containsKey(person.getLastName() + " " + person.getFirstName())) {
             throw new EmployeeAlreadyAddedException("Данный сотрудник уже существует");
         } else {
